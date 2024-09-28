@@ -3,7 +3,9 @@ resource "aws_codedeploy_deployment_group" "deployment_group_one" {
 deployment_group_name = var.deployment_group_one
 app_name = var.code_deploy_app_name
 service_role_arn = var.assume_role_arn
-deployment_config_name = "CodeDeployDefault.OneAtATime"
+deployment_config_name = "CodeDeployDefault.AllAtOnce"
+
+
 
 auto_rollback_configuration {
     enabled = true

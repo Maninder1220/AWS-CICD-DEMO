@@ -38,7 +38,7 @@ module "ig" {
   vpc_id = module.vpc.vpc_id
 }
 
-# Rounting
+# ROUTING
 module "routing" {
   source = "../Module/7 - routing"
   vpc_id = module.vpc.vpc_id
@@ -58,18 +58,18 @@ module "nacl" {
   public_subnet_id = module.subnets.public_subnet_id
 }
 
-# # # # CICD STACK # # # #
+# # # # SERVICES OF CICD STACK # # # #
 
 # S3
 module "s3" {
   source = "../Module/9 - s3"
-  
 }
 
 # ROLE
 module "assume-role" {
   source = "../Module/10 - role"
   cicd_role_name = var.cicd_role_name
+  
 }
 
 # EC2 Key Pair
@@ -84,6 +84,8 @@ module "ec2" {
   public_subnet_id = module.subnets.public_subnet_id
   public_key = module.ec2-key-pair.public_key
 }
+
+# # # # CICD STACK # # # #
 
 # CODE COMMIT
 module "code-commit" {
@@ -128,18 +130,18 @@ module "code-pipeline" {
   deployment_group_name = module.code-deploy-group.deployment_group_name
 }
 
-# Cloud Watch Log Group
+# Cloud Watch | Log Group
 module "cloud-watch-log-group" {
   source = "../Module/18 - cloud-watch-log-group"
 }
 
-# Cloud Watch Event Rule
+# Cloud Watch | Event Rule
 module "event-rule" {
   source = "../Module/19 - cloud-watch-event-rule"
   cc_trigger_codepipeline = var.cc_trigger_codepipeline
 }
 
-# Cloud Watch Event Target
+# Cloud Watch | Event Target
 module "event-target" {
   source = "../Module/20 - cloudwatch-event-target"
   code_pipeline_arn = module.code-pipeline.code_pipeline_arn

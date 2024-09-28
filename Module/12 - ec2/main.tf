@@ -23,6 +23,7 @@ resource "aws_instance" "cicd_server" {
   key_name = var.public_key                         
   vpc_security_group_ids = [ var.sg_id ]            
   subnet_id = var.public_subnet_id
+  iam_instance_profile = var.assume_role_arn
   user_data = <<-EOF
     #!/bin/bash
     sudo apt update -y
@@ -32,6 +33,8 @@ resource "aws_instance" "cicd_server" {
     chmod +x ./install
     sudo ./install auto
     sudo service codedeploy-agent start
+    sudo apt update -y
+    sudo apt install -y nginx
     EOF
 
   tags = {
