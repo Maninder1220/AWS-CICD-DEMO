@@ -1,0 +1,17 @@
+version: 0.2
+phases:
+  install:
+    commands:
+      - echo "Nothing to install for a static HTML site"
+  build:
+    commands:
+      - echo "Preparing deployment"
+  post_build:
+    commands:
+      - echo "Build phase complete"
+artifacts:
+  files:
+    - index.html
+    - appspec.yml
+    - Dockerfile
+    - scripts/**
