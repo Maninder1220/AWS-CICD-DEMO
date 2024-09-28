@@ -20,7 +20,7 @@ resource "aws_codepipeline" "mahity_pipeline" {
       output_artifacts = ["source_output"]
       configuration = {
         RepositoryName = var.code_commit_repository_one
-        BranchName     = "main"
+        BranchName     = "master"
       }
     }
   }

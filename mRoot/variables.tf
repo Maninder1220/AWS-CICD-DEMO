@@ -32,3 +32,5 @@ variable "code_deploy_app_name" {}
 variable "deployment_group_one" {}
 
 variable "pipeline_name" {}
+
+variable "cc_trigger_codepipeline" {}

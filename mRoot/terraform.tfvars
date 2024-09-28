@@ -23,3 +23,6 @@ deployment_group_one = "mahity-deployment-group-one"
 
 # CODE PIPELINE NAME
 pipeline_name = "mahity-pipeline"
+
+# CODE PIPELINE TRIGGER NAME
+cc_trigger_codepipeline = "mahity-code-commit-trigger"

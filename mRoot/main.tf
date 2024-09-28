@@ -63,6 +63,7 @@ module "nacl" {
 # S3
 module "s3" {
   source = "../Module/9 - s3"
+  
 }
 
 # ROLE
@@ -114,14 +115,10 @@ module "code-deploy-group" {
   cd_app_id = module.code-deploy-app.cd_app_id
 }
 
-# Cloud Watch Log Group
-module "cloud-watch-log-group" {
-  source = "../Module/17 - cloud-watch-log-group"
-}
 
 # CODE PIPELINE
 module "code-pipeline" {
-  source = "../Module/18 - code-pipeline"
+  source = "../Module/17 - code-pipeline"
   assume_role_arn = module.assume-role.assume_role_arn
   code_commit_repository_one = module.code-commit.code_commit_repository_one
   codebuld_project_bucket_arti_cach = module.s3.codebuld_project_bucket_arti_cach
@@ -129,5 +126,24 @@ module "code-pipeline" {
   codebuild_name = module.code-build.codebuild_name
   code_deploy_app_name = module.code-deploy-app.code_deploy_app_name
   deployment_group_name = module.code-deploy-group.deployment_group_name
+}
+
+# Cloud Watch Log Group
+module "cloud-watch-log-group" {
+  source = "../Module/18 - cloud-watch-log-group"
+}
+
+# Cloud Watch Event Rule
+module "event-rule" {
+  source = "../Module/19 - cloud-watch-event-rule"
+  cc_trigger_codepipeline = var.cc_trigger_codepipeline
+}
+
+# Cloud Watch Event Target
+module "event-target" {
+  source = "../Module/20 - cloudwatch-event-target"
+  code_pipeline_arn = module.code-pipeline.code_pipeline_arn
+  event_rule_name = module.event-rule.event_rule_name
+  assume_role_arn = module.assume-role.assume_role_arn
 }
 
