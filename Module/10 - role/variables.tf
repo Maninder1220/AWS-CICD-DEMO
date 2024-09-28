@@ -1,0 +1,1 @@
+variable "cicd_role_name" {}
