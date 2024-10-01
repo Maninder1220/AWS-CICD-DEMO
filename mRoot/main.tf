@@ -83,6 +83,7 @@ module "ec2" {
   sg_id = module.security-group.sg_id
   public_subnet_id = module.subnets.public_subnet_id
   public_key = module.ec2-key-pair.public_key
+  assume_role_arn = module.assume-role.assume_role_arn
 }
 
 # # # # CICD STACK # # # #

@@ -18,7 +18,8 @@ data "aws_iam_policy_document" "assume_role_policy" {
         "codedeploy.amazonaws.com",
         "codepipeline.amazonaws.com",
         "events.amazonaws.com",
-        "ec2.amazoneaws.com"
+        "ec2.amazonaws.com"
+
         
       ]
     }
@@ -48,7 +49,7 @@ data "aws_iam_policy_document" "ec2_policy" {
       "ec2:StartInstances",
       "ec2:StopInstances",
       "ec2:TerminateInstances",
-      "ec2:CreateTags"
+      "ec2:CreateTags",
     ]
 
     resources = ["*"] 
