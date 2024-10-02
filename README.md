@@ -52,3 +52,9 @@ data "aws_iam_policy_document" "log_permissions_policy" {
     resources = ["*"] 
   }
 }
+
+# CODEPIPELINE Theory
+- Pipeline have Stages
+- Stages have actions
+- Actions have Name, Category, Owner, Provider
+  Input_Artifacts, Output_Artifacts, Configuration and version

@@ -1,4 +1,4 @@
-
+# My ACTUAL ARTIFACTS BUCKET
 resource "aws_s3_bucket" "artifact_n_log_bucket" {
     bucket = "my-artifact-and-logs-bucket-for-code-pipeline" # Change to your desired bucket name
     

@@ -69,7 +69,7 @@ module "s3" {
 module "assume-role" {
   source = "../Module/10 - role"
   cicd_role_name = var.cicd_role_name
-  
+  cicd_instance_profile_name = var.cicd_instance_profile_name
 }
 
 # EC2 Key Pair
@@ -84,6 +84,7 @@ module "ec2" {
   public_subnet_id = module.subnets.public_subnet_id
   public_key = module.ec2-key-pair.public_key
   assume_role_arn = module.assume-role.assume_role_arn
+  instance_profile_name = module.assume-role.instance_profile_name
 }
 
 # # # # CICD STACK # # # #

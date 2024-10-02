@@ -9,15 +9,15 @@ resource "aws_codepipeline" "mahity_pipeline" {
 
   # Source Stage
   stage {
-    name = "Source"
+    name = "CodeCommit-Source"
 
     action {
-      name             = "Source"
+      name             = "CC_Source"
       category         = "Source"
       owner            = "AWS"
-      provider         = "CodeCommit"
+      provider         = "CodeCommit"      # "GitHub" or "Bitbucket"
       version          = "1"
-      output_artifacts = ["source_output"]
+      output_artifacts = ["cc_source_output"]
       configuration = {
         RepositoryName = var.code_commit_repository_one
         BranchName     = "master"
@@ -27,15 +27,15 @@ resource "aws_codepipeline" "mahity_pipeline" {
 
   # Build Stage
   stage {
-    name = "Build"
+    name = "CodeBuild-Build"
 
     action {
-      name            = "Build"
+      name            = "CB_Build"
       category        = "Build"
       owner           = "AWS"
       provider        = "CodeBuild"
-      input_artifacts = ["source_output"]
-      output_artifacts = ["build_output"] 
+      input_artifacts = ["cc_source_output"]
+      output_artifacts = ["cb_build_output"] 
       configuration = {
         ProjectName = var.codebuild_name
       }
@@ -43,20 +43,21 @@ resource "aws_codepipeline" "mahity_pipeline" {
     }
   }
 
-  
+  # Deploy Stage
   stage {
-    name = "Deploy"
+    name = "CodeDeploy-Deploy"
 
     action {
-      name            = "Deploy"
+      name            = "CD_Deploy"
       category        = "Deploy"
       owner           = "AWS"
       provider        = "CodeDeploy"
-      input_artifacts = ["build_output"]
+      input_artifacts = ["cb_build_output"]
       configuration = {
         ApplicationName     = var.code_deploy_app_name
         DeploymentGroupName = var.deployment_group_name
       }
+
       version = "1"
     }
   }

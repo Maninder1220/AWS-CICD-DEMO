@@ -1,3 +1,10 @@
+# INSTANCE PROFILE
+resource "aws_iam_instance_profile" "instance_profile" {
+  name = var.cicd_instance_profile_name
+  role = aws_iam_role.assume_role.name
+}
+
+
 # ASSUMED ROLE
 resource "aws_iam_role" "assume_role" {
   name = var.cicd_role_name
@@ -72,7 +79,11 @@ data "aws_iam_policy_document" "s3_policy" {
     effect = "Allow"
     actions = [
       "s3:PutObject",
-      "s3:GetObject"
+      "s3:GetObject",
+      "s3:GetObjectVersion",
+      "s3:GetBucketVersioning",
+      "s3:PutObjectAcl",
+      "s3:PutObject",
     ]
     resources = ["*"] 
   }

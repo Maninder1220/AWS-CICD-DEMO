@@ -26,3 +26,6 @@ pipeline_name = "mahity-pipeline"
 
 # CODE PIPELINE TRIGGER NAME
 cc_trigger_codepipeline = "mahity-code-commit-trigger"
+
+# INSTANCE PROFILE NAME
+cicd_instance_profile_name = "mahity-cicd-instance-profile"

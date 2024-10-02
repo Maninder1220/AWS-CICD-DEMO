@@ -5,6 +5,8 @@ variable "sg_id" {}
 
 variable "assume_role_arn" {}
 
+variable "instance_profile_name" {}
+
 
 # TAG
 variable "belongs_to" {

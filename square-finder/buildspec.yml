@@ -1,0 +1,19 @@
+version: 0.2
+
+phases:
+  install:
+    commands:
+      - echo "No dependencies to install"
+  build:
+    commands:
+      - echo "Nothing to build for index.html"
+  post_build:
+    commands:
+      - echo "Build process complete"
+
+artifacts:
+  files:
+    - index.html
+    - appspec.yml
+    - scripts/install_dependencies.sh
+    - scripts/start_server.sh

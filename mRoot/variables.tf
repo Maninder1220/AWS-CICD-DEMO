@@ -34,3 +34,5 @@ variable "deployment_group_one" {}
 variable "pipeline_name" {}
 
 variable "cc_trigger_codepipeline" {}
+
+variable "cicd_instance_profile_name" {}
