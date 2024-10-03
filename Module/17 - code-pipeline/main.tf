@@ -61,4 +61,5 @@ resource "aws_codepipeline" "mahity_pipeline" {
       version = "1"
     }
   }
+  depends_on = [ var.codebuld_project_bucket_arti_cach ]
 }
