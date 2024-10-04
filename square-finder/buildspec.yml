@@ -15,5 +15,9 @@ artifacts:
   files:
     - index.html
     - appspec.yml
-    - scripts/install_dependencies.sh
-    - scripts/start_server.sh
+    - scripts/01_stop_application.sh
+    - scripts/02_install_dependencies.sh
+    - scripts/03_install_application.sh
+    - scripts/04_configure_permissions.sh
+    - scripts/05_start_application.sh
+    - scripts/06_validate_service.sh

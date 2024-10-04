@@ -1,6 +1,7 @@
 # My ACTUAL ARTIFACTS BUCKET
 resource "aws_s3_bucket" "artifact_n_log_bucket" {
     bucket = "my-artifact-and-logs-bucket-for-code-pipeline" # Change to your desired bucket name
+    # region = "ap-south-1"
     
     lifecycle {
     prevent_destroy = false  # Prevent accidental destruction
@@ -12,6 +13,7 @@ resource "null_resource" "empty_bucket" {
   provisioner "local-exec" {
     command = "aws s3 rm s3://my-artifact-and-logs-bucket-for-code-pipeline --recursive"
   }
+  depends_on = [ aws_s3_bucket.artifact_n_log_bucket ]
 }
 
 # Runs after the bucket is emptied
@@ -21,6 +23,7 @@ resource "null_resource" "delete_bucket" {
   provisioner "local-exec" {
     command = "aws s3api delete-bucket --bucket my-artifact-and-logs-bucket-for-code-pipeline"
   }
+  
 }
 
 

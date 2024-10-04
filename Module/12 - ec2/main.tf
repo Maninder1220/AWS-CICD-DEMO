@@ -33,8 +33,6 @@ resource "aws_instance" "cicd_server" {
     chmod +x ./install
     sudo ./install auto
     sudo service codedeploy-agent start
-    sudo apt update -y
-    sudo apt install -y nginx
     EOF
 
   tags = {

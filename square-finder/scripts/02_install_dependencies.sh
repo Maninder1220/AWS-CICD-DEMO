@@ -4,7 +4,7 @@
 sudo apt update
 
 # Check if Nginx is installed
-if dpkg -l | grep -q nginx; then
+ if dpkg -l | grep -q nginx; then
     echo "Nginx is already installed."
 else
     # Install Nginx
@@ -37,12 +37,12 @@ else
     # Run the install script
     sudo ./install auto
 
-    # Start the CodeDeploy agent service
-    sudo systemctl start codedeploy-agent
+    # Start the CodeDeploy agent service using 'service'
+    sudo service codedeploy-agent start
 
     # Enable the CodeDeploy agent to start on boot
-    sudo systemctl enable codedeploy-agent
+    sudo service codedeploy-agent enable
 fi
 
-# Print CodeDeploy agent status
-sudo systemctl status codedeploy-agent
+# Print CodeDeploy agent status using 'service'
+sudo service codedeploy-agent status
